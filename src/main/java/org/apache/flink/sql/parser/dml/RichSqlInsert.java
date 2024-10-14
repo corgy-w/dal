@@ -121,10 +121,11 @@ public class RichSqlInsert extends SqlInsert {
         String insertKeyword = "INSERT INTO";
         if (isUpsert()) {
             insertKeyword = "UPSERT INTO";
-        } else if (isTable()) {
-            insertKeyword = "INSERT INTO TABLE";
-        } else if (isOverwrite()) {
+        }  else if (isOverwrite()) {
             insertKeyword = "INSERT OVERWRITE";
+        }
+        if (isTable()) {
+            insertKeyword += " TABLE";
         }
         writer.sep(insertKeyword);
         final int opLeft = getOperator().getLeftPrec();

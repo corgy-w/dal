@@ -419,122 +419,6 @@ class CreateTableLikeTest {
                 "            and case_tag.cl_name='case_tag'\n" +
                 "    where t1.pt = '${bizdate}000000'\n" +
                 ")  t1\n" +
-                "-- 意健险业务库\n" +
-                "insert overwrite table edw_ha_claim_application partition(pt = '${bizdate}000000', pt2 = 'yjx')\n" +
-                "select\n" +
-                "      t1.id\n" +
-                "    , t1.report_no\n" +
-                "    , t1.status\n" +
-                "    , t1.status_name\n" +
-                "    , t1.source\n" +
-                "    , t1.source_name\n" +
-                "    , t1.archive_no\n" +
-                "    , t1.seppage_path_file_name\n" +
-                "    , t1.channel_application_id\n" +
-                "    , t1.image_no\n" +
-                "    , t1.seppage_path\n" +
-                "    , t1.loss_type -- 系统默认值为 illness\n" +
-                "    , t1.loss_type_name\n" +
-                "    , t1.loss_code\n" +
-                "    , t1.loss_code_name -- 出险原因名称\n" +
-                "    , t1.insurance_name\n" +
-                "    , t1.insurance_ceti_no\n" +
-                "    , t1.insurance_ceti_type\n" +
-                "    , t1.accident_date\n" +
-                "    , t1.accident_area\n" +
-                "    , t1.accident_area_name--    出现区域名称\n" +
-                "    , t1.accident_place\n" +
-                "    , t1.accident_process\n" +
-                "    , t1.reporter\n" +
-                "    , t1.reporter_insured_relation\n" +
-                "    , t1.reporter_insured_relation_name\n" +
-                "    , t1.tel_no\n" +
-                "    , t1.mobile_no\n" +
-                "    , t1.claim_amount\n" +
-                "    , t1.claim_currency\n" +
-                "    , t1.remark\n" +
-                "    , t1.handler\n" +
-                "    , t1.reported_date\n" +
-                "    , t1.death_date\n" +
-                "    , t1.close_date\n" +
-                "    , t1.creator\n" +
-                "    , t1.creator_no\n" +
-                "    , t1.gmt_created\n" +
-                "    , t1.modifier\n" +
-                "    , t1.gmt_modified\n" +
-                "    , t1.extra_info\n" +
-                "    , t1.extra_info__masterinsuredinfo -- 主被保人\n" +
-                "    , t1.extra_info__isneedclaimdivision -- 是否需要理赔分割单类型\n" +
-                "    , t1.extra_info__plancodelist -- 滴滴报案时的产品组合\n" +
-                "    , t1.extra_info__materialsmssend --  补充材料发送成功标记\n" +
-                "    , t1.extra_info__customerno  -- 滴滴报案客户号\n" +
-                "    , t1.extra_info__accidentdate --  出险时间\n" +
-                "    , t1.extra_info__syslocmobileno --   系统自动定位的手机号\n" +
-                "    , t1.extra_info__syncversion --  同步搜索数据版本\n" +
-                "    , t1.extra_info__claimreturnchannelkey --  案件回传腾讯商保标记\n" +
-                "    , t1.extra_info__importDataSource --  案件导入来源\n" +
-                "    , t1.is_deleted\n" +
-                "    , t1.allow_dispatch\n" +
-                "    , t1.istpadispatch\n" +
-                "    , t1.email\n" +
-                "    , t1.gender\n" +
-                "    , t1.birth_day\n" +
-                "    , t1.channel_batch_no\n" +
-                "    , t1.channel_report_no\n" +
-                "    , t1.adjustment_date\n" +
-                "    , t1.tpa_source\n" +
-                "    , t1.tpa_source_name\n" +
-                "    , t1.master_insured_cert_no\n" +
-                "    , t1.master_insured_cert_type\n" +
-                "    , t1.is_campaign -- 系统默认为非滴滴案件\n" +
-                "    , t1.diagnosis_date\n" +
-                "    , t1.is_attachment\n" +
-                "    , t1.is_vip\n" +
-                "    , t1.elapsed_time\n" +
-                "    , t1.disallow_batch_close\n" +
-                "    , t1.department\n" +
-                "    , t1.has_potential_missing_policy\n" +
-                "    , t1.potential_missing_policy\n" +
-                "    , t1.lawsuit\n" +
-                "    , t1.has_tried_to_dispatch_tpa\n" +
-                "    , t1.auto_dispatch_status\n" +
-                "    , t1.auto_dispatch_fail_count\n" +
-                "    , t1.error_type\n" +
-                "    , t1.mdp_hospital_name\n" +
-                "    , t1.mdp_hospital_code\n" +
-                "    , t1.mdp_invoice_nos\n" +
-                "    , t1.order_no\n" +
-                "    , t1.claim_date\n" +
-                "    , t1.one_notice_date\n" +
-                "    , t1.material_complete_date\n" +
-                "    , t1.case_mark\n" +
-                "    , t1.case_mark_name\n" +
-                "    , t1.is_preclaim_adjustment\n" +
-                "    , t1.is_internal\n" +
-                "    , t1.is_preclaim\n" +
-                "    , t1.cancel_operator\n" +
-                "    , t1.cancel_review_operator\n" +
-                "    , t1.appeal_date\n" +
-                "    , t1.appeal_no\n" +
-                "    , t1.first_close_date\n" +
-                "    , t1.case_tag\n" +
-                "    , t1.is_special_drugs\n" +
-                "    , t1.source_policy_no -- 保单号\n" +
-                "    , t1.source_policy_id -- 保单ID\n" +
-                "    , t1.repeat_nos --   注销原因为客户重复报案时选择的重复案件号\n" +
-                "    , t1.no_claim_sms -- 是否不需要发送理赔短信 1：不需要， 0/null：需要\n" +
-                "    , t1.no_claim_email --   是否不需要发送理赔邮件 1：不需要， 0/null：需要\n" +
-                "    , t1.no_customer_visit --    是否不需要客服回访 1：不需要， 0/null：需要\n" +
-                "    , t1.risk_remark --  风险备注\n" +
-                "    , t1.risk_remark__riskName --  风险备注\n" +
-                "    , t1.risk_remark__riskDetail --  风险备注\n" +
-                "    , t1.risk_remark__riskResult --  风险备注\n" +
-                "    , t1.case_tag_name --案件标签名称\n" +
-                "    , t1.catastrophe_code --巨灾代码\n" +
-                "    , t1.catastrophe_name --巨灾代码名称\n" +
-                "    , t1.elapsed_time_seconds --经过时间(秒)\n" +
-                "    , t1.sub_status --理赔子状态\n" +
-                "where pt2='yjx'\n" +
                 "-- 意健险高频导入库\n" +
                 "insert overwrite table edw_ha_claim_application partition(pt = '${bizdate}000000', pt2 = 'yjx-vhf')\n" +
                 "select\n" +
@@ -661,6 +545,129 @@ class CreateTableLikeTest {
     public void testInsert() throws SqlParseException {
         String sql = "-- 意健险高频导入库\n" +
                 "insert INTO table edw_ha_claim_application \n" +
+                "select\n" +
+                "    t1.id\n" +
+                "    , t1.report_no\n" +
+                "    , t1.status\n" +
+                "    , t1.status_name\n" +
+                "    , t1.source\n" +
+                "    , t1.source_name\n" +
+                "    , t1.archive_no\n" +
+                "    , t1.seppage_path_file_name\n" +
+                "    , t1.channel_application_id\n" +
+                "    , t1.image_no\n" +
+                "    , t1.seppage_path\n" +
+                "    , t1.loss_type -- 系统默认值为 illness\n" +
+                "    , t1.loss_type_name\n" +
+                "    , t1.loss_code\n" +
+                "    , t1.loss_code_name -- 出险原因名称\n" +
+                "    , t1.insurance_name\n" +
+                "    , t1.insurance_ceti_no\n" +
+                "    , t1.insurance_ceti_type\n" +
+                "    , t1.accident_date\n" +
+                "    , t1.accident_area\n" +
+                "    , t1.accident_area_name--    出现区域名称\n" +
+                "    , t1.accident_place\n" +
+                "    , t1.accident_process\n" +
+                "    , t1.reporter\n" +
+                "    , t1.reporter_insured_relation\n" +
+                "    , t1.reporter_insured_relation_name\n" +
+                "    , t1.tel_no\n" +
+                "    , t1.mobile_no\n" +
+                "    , t1.claim_amount\n" +
+                "    , t1.claim_currency\n" +
+                "    , t1.remark\n" +
+                "    , t1.handler\n" +
+                "    , t1.reported_date\n" +
+                "    , t1.death_date\n" +
+                "    , t1.close_date\n" +
+                "    , t1.creator\n" +
+                "    , t1.creator_no\n" +
+                "    , t1.gmt_created\n" +
+                "    , t1.modifier\n" +
+                "    , t1.gmt_modified\n" +
+                "    , t1.extra_info\n" +
+                "    , t1.extra_info__masterinsuredinfo -- 主被保人\n" +
+                "    , t1.extra_info__isneedclaimdivision -- 是否需要理赔分割单类型\n" +
+                "    , t1.extra_info__plancodelist -- 滴滴报案时的产品组合\n" +
+                "    , t1.extra_info__materialsmssend --  补充材料发送成功标记\n" +
+                "    , t1.extra_info__customerno  -- 滴滴报案客户号\n" +
+                "    , t1.extra_info__accidentdate --  出险时间\n" +
+                "    , t1.extra_info__syslocmobileno --   系统自动定位的手机号\n" +
+                "    , t1.extra_info__syncversion --  同步搜索数据版本\n" +
+                "    , t1.extra_info__claimreturnchannelkey --  案件回传腾讯商保标记\n" +
+                "    , t1.extra_info__importDataSource --  案件导入来源\n" +
+                "    , t1.is_deleted\n" +
+                "    , t1.allow_dispatch\n" +
+                "    , t1.istpadispatch\n" +
+                "    , t1.email\n" +
+                "    , t1.gender\n" +
+                "    , t1.birth_day\n" +
+                "    , t1.channel_batch_no\n" +
+                "    , t1.channel_report_no\n" +
+                "    , t1.adjustment_date\n" +
+                "    , t1.tpa_source\n" +
+                "    , t1.tpa_source_name\n" +
+                "    , t1.master_insured_cert_no\n" +
+                "    , t1.master_insured_cert_type\n" +
+                "    , t1.is_campaign -- 系统默认为非滴滴案件\n" +
+                "    , t1.diagnosis_date\n" +
+                "    , t1.is_attachment\n" +
+                "    , t1.is_vip\n" +
+                "    , t1.elapsed_time\n" +
+                "    , t1.disallow_batch_close\n" +
+                "    , t1.department\n" +
+                "    , t1.has_potential_missing_policy\n" +
+                "    , t1.potential_missing_policy\n" +
+                "    , t1.lawsuit\n" +
+                "    , t1.has_tried_to_dispatch_tpa\n" +
+                "    , t1.auto_dispatch_status\n" +
+                "    , t1.auto_dispatch_fail_count\n" +
+                "    , t1.error_type\n" +
+                "    , t1.mdp_hospital_name\n" +
+                "    , t1.mdp_hospital_code\n" +
+                "    , t1.mdp_invoice_nos\n" +
+                "    , t1.order_no\n" +
+                "    , t1.claim_date\n" +
+                "    , t1.one_notice_date\n" +
+                "    , t1.material_complete_date\n" +
+                "    , t1.case_mark\n" +
+                "    , t1.case_mark_name\n" +
+                "    , t1.is_preclaim_adjustment\n" +
+                "    , t1.is_internal\n" +
+                "    , t1.is_preclaim\n" +
+                "    , t1.cancel_operator\n" +
+                "    , t1.cancel_review_operator\n" +
+                "    , t1.appeal_date\n" +
+                "    , t1.appeal_no\n" +
+                "    , t1.first_close_date\n" +
+                "    , t1.case_tag\n" +
+                "    , t1.is_special_drugs\n" +
+                "    , t1.source_policy_no -- 保单号\n" +
+                "    , t1.source_policy_id -- 保单ID\n" +
+                "    , t1.repeat_nos --   注销原因为客户重复报案时选择的重复案件号\n" +
+                "    , t1.no_claim_sms -- 是否不需要发送理赔短信 1：不需要， 0/null：需要\n" +
+                "    , t1.no_claim_email --   是否不需要发送理赔邮件 1：不需要， 0/null：需要\n" +
+                "    , t1.no_customer_visit --    是否不需要客服回访 1：不需要， 0/null：需要\n" +
+                "    , t1.risk_remark --  风险备注\n" +
+                "    , t1.risk_remark__riskName --  风险备注\n" +
+                "    , t1.risk_remark__riskDetail --  风险备注\n" +
+                "    , t1.risk_remark__riskResult --  风险备注\n" +
+                "    , t1.case_tag_name --案件标签名称\n" +
+                "    , t1.catastrophe_code --巨灾代码\n" +
+                "    , t1.catastrophe_name --巨灾代码名称\n" +
+                "    , t1.elapsed_time_seconds --经过时间(秒)\n" +
+                "    , t1.sub_status --理赔子状态\n";
+        SqlParser sqlParser = createFlinkParser(sql);
+
+        SqlNode actualNode = sqlParser.parseStmt();
+        System.out.println(actualNode);
+    }
+
+    @Test
+    public void testInsert2() throws SqlParseException {
+        String sql =  "-- 意健险业务库\n" +
+                "insert overwrite table edw_ha_claim_application \n" +
                 "select\n" +
                 "    t1.id\n" +
                 "    , t1.report_no\n" +

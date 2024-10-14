@@ -2008,11 +2008,7 @@ SqlNode RichSqlInsert() :
         <UPSERT> { keywords.add(SqlInsertKeyword.UPSERT.symbol(getPos())); }
     )
     (
-        <INTO>[
-            <TABLE> {
-                extendedKeywords.add(RichSqlInsertKeyword.TABLE.symbol(getPos()));
-            }
-        ]
+        <INTO>
     |
         <OVERWRITE> {
             if (RichSqlInsert.isUpsert(keywords)) {
@@ -2021,6 +2017,9 @@ SqlNode RichSqlInsert() :
             }
             extendedKeywords.add(RichSqlInsertKeyword.OVERWRITE.symbol(getPos()));
         }
+    )
+    (
+     [<TABLE> {extendedKeywords.add(RichSqlInsertKeyword.TABLE.symbol(getPos()));}]
     )
     { s = span(); }
     SqlInsertKeywords(keywords) {
