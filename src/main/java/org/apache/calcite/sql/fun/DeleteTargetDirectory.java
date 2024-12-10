@@ -47,7 +47,7 @@ public class DeleteTargetDirectory {
      * 删除整个目录及其内容
      *
      * @param directory 要删除的目录
-     * @return 删除是否成功
+     * @return 删除是否成功 想哭😭
      */
     private static boolean deleteDirectory(File directory) {
         File[] allContents = directory.listFiles();
